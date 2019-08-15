@@ -26,7 +26,7 @@ class TwitterETL(AbstractEtl):
         return tw.API(auth)
 
     def extract(self):
-        return  self.api.search("ynetalerts")
+        return  self.api.user_timeline("ynetalerts")
 
     def transfer(self, tweetResult):
         data = []
