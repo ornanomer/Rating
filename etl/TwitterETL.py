@@ -3,8 +3,13 @@ import tweepy as tw
 import pandas as pd
 import configparser
 
+from etl.AbstractETL import AbstractEtl
+
+
 class TwitterETL(AbstractEtl):
 
+    def __init__(self):
+        self.api = self.getTwitterApiAccess()
 
     def getTwitterApiAccess(self):
         config = configparser.RawConfigParser()
@@ -15,10 +20,19 @@ class TwitterETL(AbstractEtl):
         accessTokenSecret = config.get("access_token_secret")
         auth = tw.OAuthHandler(consumerKey, consumerSecret)
         auth.set_access_token(accessToken, accessTokenSecret)
-        return  tw.API(auth)
+        return tw.API(auth)
 
-    def __init__(self):
-        tw = self.getTwitterApiAccess()
+    def extract(self):
+        for statuses in tw.Cursor(self.api.user_timeline).pages(3)
+        tw.Cursor(ap)
+        pass
+
+
+
+
+
+
+
 
 
 
