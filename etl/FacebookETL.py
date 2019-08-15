@@ -23,7 +23,7 @@ class FacebookETL(AbstractEtl):
         return tw.API(auth)
 
     def extract(self):
-        for statuses in tw.Cursor(self.api.user_timeline).pages(3)
+        for statuses in tw.Cursor(self.api.user_timeline).pages(3):
             print(statuses)
         pass
 

@@ -1,6 +1,5 @@
 
 import tweepy as tw
-import pandas as pd
 import configparser
 
 from etl.AbstractETL import AbstractEtl
@@ -13,19 +12,24 @@ class TwitterETL(AbstractEtl):
 
     def getTwitterApiAccess(self):
         config = configparser.RawConfigParser()
-        config.read('ConfigFile.properties')
-        consumerKey = config.get("consumer_key")
-        consumerSecret = config.get("consumer_secret")
-        accessToken = config.get("access_token")
-        accessTokenSecret = config.get("access_token_secret")
+        config.read('/Users/omero/Library/Preferences/PyCharm2019.1/scratches/tweeter.ini')
+        consumerKey = config['TWITTER']['consumer_key']
+        consumerSecret = config['TWITTER']['consumer_secret']
+        accessToken = config['TWITTER']['access_token']
+        accessTokenSecret = config['TWITTER']['access_token_secret']
         auth = tw.OAuthHandler(consumerKey, consumerSecret)
         auth.set_access_token(accessToken, accessTokenSecret)
         return tw.API(auth)
 
     def extract(self):
-        for statuses in tw.Cursor(self.api.user_timeline).pages(3)
-            print(statuses)
-        pass
+        return  self.api.search("ynetalerts")
+
+    def transfer(self, data):
+        for status in data :
+            if(if thereUrl)
+            likes = status.favority
+            url =
+
 
 
 

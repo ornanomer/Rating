@@ -7,7 +7,7 @@ class AbstractEtl:
         pass
 
 
-    def executer(self):
+    def execute(self):
         extactData = self.extract()
         transferData = self.transfer(extactData)
         loadData = self.load(transferData)
