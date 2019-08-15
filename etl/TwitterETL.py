@@ -24,7 +24,7 @@ class TwitterETL(AbstractEtl):
 
     def extract(self):
         for statuses in tw.Cursor(self.api.user_timeline).pages(3)
-        tw.Cursor(ap)
+            print(statuses)
         pass
 
 
