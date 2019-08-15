@@ -2,17 +2,21 @@
 import tweepy as tw
 import configparser
 
+from etl import Utils
 from etl.AbstractETL import AbstractEtl
+from etl.RatingData import RatingData
 
 
 class TwitterETL(AbstractEtl):
 
     def __init__(self):
+        super().__init__()
         self.api = self.getTwitterApiAccess()
+        self.source = 'Tweeter'
 
     def getTwitterApiAccess(self):
         config = configparser.RawConfigParser()
-        config.read('/Users/omero/Library/Preferences/PyCharm2019.1/scratches/tweeter.ini')
+        config.read('/Users/omero/Library/Preferences/PyCharm2019.1/scratches/credential.ini')
         consumerKey = config['TWITTER']['consumer_key']
         consumerSecret = config['TWITTER']['consumer_secret']
         accessToken = config['TWITTER']['access_token']
@@ -24,12 +28,14 @@ class TwitterETL(AbstractEtl):
     def extract(self):
         return  self.api.search("ynetalerts")
 
-    def transfer(self, data):
-        for status in data :
-            if(if thereUrl)
-            likes = status.favority
-            url =
-
+    def transfer(self, tweetResult):
+        data = []
+        for status in tweetResult:
+            if Utils.isThereAurl(status.text):
+                likes = status.retweet_count + status.favorite_count
+                url = Utils.getUrl(status.text)
+                data.append(RatingData(url, likes))
+        return data
 
 
 
