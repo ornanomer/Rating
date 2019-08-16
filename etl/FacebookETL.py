@@ -1,6 +1,6 @@
 
 import tweepy as tw
-import pandas as pd
+import facebook
 import configparser
 
 from etl.AbstractETL import AbstractEtl
@@ -9,23 +9,19 @@ from etl.AbstractETL import AbstractEtl
 class FacebookETL(AbstractEtl):
 
     def __init__(self):
-        self.api = self.getTwitterApiAccess()
+        self.api = self.getFacebookAccess()
 
-    def getTwitterApiAccess(self):
+    def getFacebookAccess(self):
         config = configparser.RawConfigParser()
-        config.read('ConfigFile.properties')
-        consumerKey = config.get("consumer_key")
-        consumerSecret = config.get("consumer_secret")
-        accessToken = config.get("access_token")
-        accessTokenSecret = config.get("access_token_secret")
-        auth = tw.OAuthHandler(consumerKey, consumerSecret)
-        auth.set_access_token(accessToken, accessTokenSecret)
-        return tw.API(auth)
+        config.read('/Users/omero/Library/Preferences/PyCharm2019.1/scratches/credential.ini')
+        consumerKey = config['FACEBOOK']['facebook_access_token']
+        return facebook.GraphAPI(consumerKey)
+
+
+
 
     def extract(self):
-        for statuses in tw.Cursor(self.api.user_timeline).pages(3):
-            print(statuses)
-        pass
+        return self.api.search("ynet")
 
 
 
