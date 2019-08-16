@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS rating_estimation (
+    URL VARCHAR(255) NOT NULL,
+    SOURCE VARCHAR(255) NOT NULL,
+    rating_val int
+)
