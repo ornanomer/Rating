@@ -17,9 +17,6 @@ class FacebookETL(AbstractEtl):
         consumerKey = config['FACEBOOK']['facebook_access_token']
         return facebook.GraphAPI(consumerKey)
 
-
-
-
     def extract(self):
         return self.api.search("ynet")
 

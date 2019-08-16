@@ -11,8 +11,10 @@ class AbstractEtl:
         self.source ='DEFAULT'
     def extract(self):
         pass
+
     def transfer(self, data):
         pass
+
     def load(self, dataList):
         cursor = self.sqlConnection.cursor()
         for data in dataList:
@@ -31,8 +33,6 @@ class AbstractEtl:
             user,
             password
         )
-
-
 
     def execute(self):
         extactData = self.extract()
