@@ -23,6 +23,9 @@ class FacebookETL(AbstractEtl):
     def extract(self):
         return self.api.search("ynet")
 
+    def load(self, dataList):
+        pass
+
 
 
 
